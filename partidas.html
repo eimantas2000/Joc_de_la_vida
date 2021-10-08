@@ -11,11 +11,10 @@
 <body>
     <div class="Menu">
         <h1 class="h1_menu_principal">Partidas</h1>
-            <select id="partidas" onchange="enviar_dades(this.value);">
+            <select class="div_formulari" id="partidas" onchange="enviar_dades(this.value);">
                 <option value="">Escull una partida:</option>
             </select>
             <a href="Formulari.html" title="Mi enlace"><img class="fletxa_enrrere"src="fletxa_enrere.png" alt="Enrere" width="auto" height="auto"></a>
-            <button><img href="partida.php"class="fletxa_endavant"src="fletxa_endavant.png" alt="Enrere" width="auto" height="auto" ></button>
     </div>
 
 </body>
@@ -39,10 +38,14 @@ return cookies;
 
   var cookies = cookies();
 for(var name in cookies) {
-  var y=document.createElement('option');
+    
+        var y=document.createElement('option');
   y.text=name;
-  var x=document.getElementById("partidas");
+  
+    var x=document.getElementById("partidas");
   x.add(y);
+ 
+  
 }
 
 function enviar_dades(valor){

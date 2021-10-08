@@ -2,6 +2,18 @@
 <html lang="en">
 <head>
 <link href="css.css"rel="stylesheet" type="text/css">
+<style>
+    .contador1{
+    display: inline;
+    width: 100px;
+    height: 10px;
+    background-color:white;
+}
+.p_celules{
+    display: inline;
+    margin-left:10px
+}
+    </style>
 </head>
 <body>
     <ul>
@@ -11,7 +23,13 @@
             <output name="velocitat_sortida" id="velocitat_sortida"></output>
         </label>
         <a href="#" class="button" id="guardar" onclick="Guardar();">Guardar</a>
-        <div class="contador"></div>
+        <p class="p_celules">Cel·lules vives</p>
+        <div class="contador1"id="contador_vives"></div>
+        <p class="p_celules">Cel·lules mortes</p>
+        <div class="contador1"id="contador_mortes"></div>
+        <p class="p_celules">Cicles</p>
+        <div class="contador1"id="cicles"></div>
+        <a href="Formulari.html" ><img class="fletxa_enrrere"src="fletxa_enrere.png" alt="Enrere" width="auto" height="auto"></a>
     </ul>
     <table id="tauler"></table>
 </body>
@@ -20,30 +38,30 @@
     $x= $_COOKIE['x'];
     $y= $_COOKIE['y'];
     $check =$_POST['cel'];
-    print_r($check);
-    $array_tauler = '[';
-    
-    for ($i=0;$i<$x;$i++){
-        $array_tauler=$array_tauler.'[';
-        for ($e=1;$e<$y;$e++){
-            $array_tauler=$array_tauler.'0,';
-        }
-        $array_tauler=$array_tauler.'0],';
-    }
-    $array_tauler=$array_tauler.']';
         
         ?>
     <script>
+        
     var valor_x=<?php echo($x)?>;
     var valor_y=<?php echo($y)?>;
-    var tauler =<?php echo($array_tauler)?>;
+    var tauler =[];
     var array_checkbox =<?php echo json_encode($check)?>;
-    var tauler1=<?php echo($array_tauler)?>;
+    var tauler1=[];
     var start=null;
-    var velocitat=0;
+    var velocitat=100;
     var partidas=[];
+    var celules_vives=0;
+    var celules_mortes=0;
+    var cicles=0;
 
-
+    for(var i=0;i<=valor_y;i++){
+    tauler[i]=[];
+    tauler1[i]=[];
+    for(var a=0;a<=(valor_x+2);a++){
+        tauler[i][a]=0;
+        tauler1[i][a]=0;
+    }
+}
 //Miro les celes seleccionades i afageixo 1 
      for(var i=0;i<array_checkbox.length;i++){
         var x_y = array_checkbox[i].split(',');
@@ -52,8 +70,7 @@
         tauler[x_y[0]][x_y[1]]=1;
         }
 
-        var table = document.getElementById("tauler");
-        table.innerHTML= "";
+        
         for(var i=0;i<valor_y;i++){
             var table = document.getElementById("tauler");
             var row = table.insertRow(0);
@@ -62,11 +79,15 @@
                     var cell1 = row.insertCell(0);
                     cell1.style.backgroundColor = "black";
                     cell1.innerHTML = "";
+                    celules_vives++;
                 }else{
                     var cell1 = row.insertCell(0);
-                     cell1.innerHTML = "";}
+                     cell1.innerHTML = "";
+                     celules_mortes++;
+                     }
         }}
-
+                    
+        contador1();
     //capturem error si surt de l'array
 
     this.captura = (y, x) => {
@@ -94,7 +115,9 @@
     //Imprimeixo la taula
     
     function imprimir_tauler() {
-        
+        this.celules_vives=0;
+        this.celules_mortes=0;
+        cicles++;
         var table = document.getElementById("tauler");
         table.innerHTML= "";
         for(var i=0;i<valor_y;i++){
@@ -105,12 +128,16 @@
                     var cell1 = row.insertCell(0);
                     cell1.style.backgroundColor = "black";
                     cell1.innerHTML = "";
+                    celules_vives++;
                 }else{
                     var cell1 = row.insertCell(0);
                     cell1.style.backgroundColor = "white";
-                    cell1.innerHTML = " ";}
-    }}};
-
+                    cell1.innerHTML = " ";
+                    celules_mortes++;
+                    }
+        }
+       
+        }};
 
         //Retorno 0 o 1 segons els veins que tinguin
         this.actualitzar_estat = (row, col) => {
@@ -137,15 +164,15 @@
 //Afageixo nous valors en l'array secundari
 this.modificar_estat = () => {
     
-for (let i = 0; i < valor_y; i++) {
-    for (let j = 0; j < valor_x; j++) {
+for (let i = 0; i <=valor_y; i++) {
+    for (let j = 1; j <=valor_x; j++) {
         let new_state = this.actualitzar_estat(i, j);
         tauler1[i][j] = new_state;
     }
 }
 
-for (let h = 0; h < valor_y; h++) {
-    for (let b = 0; b < valor_x; b++) {
+for (let h = 0; h <=valor_y; h++) {
+    for (let b = 1; b <= valor_x; b++) {
         tauler[h][b] = tauler1[h][b];
     }
 }};
@@ -158,20 +185,24 @@ for (let h = 0; h < valor_y; h++) {
                 }
             this.modificar_estat();
             this.imprimir_tauler();
+            contador1();
             };
     //Crido la funcio joc i la executo infinitament 
         function començar() {
         this.start=setInterval('joc()', this.velocitat);
         };
 
+//Aquesta funcio fa de stop ja que elimina el interval creat i fa que es pari
         function pause_start(){
    clearInterval(this.start);
  }
     
+    //Assigno a la variable velocitat el valor del slider per poder introduirlo despres en el interval
  function velocitat_slider(){
      this.velocitat=document.getElementById("velocitat_entrada").value;  
  }
 
+//Guardo las posicions del array bidimensional on hi ha un 1 en un cookie
  function Guardar(){
     
   var nom= prompt("Afageix un nom de partida");
@@ -180,9 +211,16 @@ for (let h = 0; h < valor_y; h++) {
     for(var i=0;i<valor_y;i++){
         for(var a=0;a<valor_x;a++){
             if(tauler1[i][a]==1){
-                array_partida_guardar+=i+","+a+" ";;
+                array_partida_guardar+=i+","+a+" ";
     }}}
     document.cookie = nom+"="+array_partida_guardar+";max-age=86400;path=/";
+    }
+
+//Imprimeixo els contadors en els divs indicats per la id 
+    function contador1(){
+        document.getElementById("contador_vives").innerHTML = this.celules_vives;
+        document.getElementById("contador_mortes").innerHTML = this.celules_mortes;
+        document.getElementById("cicles").innerHTML = this.cicles;
     }
     </script>
 </html>

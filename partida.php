@@ -4,94 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="css.css"rel="stylesheet" type="text/css">
+    <title>Partida</title>
     <style>
-        body{
-        
-        background-color: rgb(194, 255, 217);
-    
-    }
-    table {
-        border: black 5px solid;
-        width: 90%;
-        height: 500px;
-        margin:0 auto;
-    }   
-    td {
-        border: black 1px solid;
-        width: auto;
-    } 
-   
-    .categoria{
-        -webkit-order: 0;
-        -ms-flex-order: 0;
-         order: 0;
-        -webkit-flex: 0 1 auto;
-        -ms-flex: 0 1 auto;
-        flex: 0 1 auto;
-        -webkit-align-self: auto;
-        -ms-flex-item-align: auto;
-        align-self: auto;
-    }    
-    .button{text-decoration:none; text-align:center; 
-padding:11px 32px; 
-border:solid 1px #004F72; 
--webkit-border-radius:4px;
--moz-border-radius:4px; 
-border-radius: 4px; 
-font:18px Arial, Helvetica, sans-serif; 
-font-weight:bold; 
-color:#E5FFFF; 
-background-color:#3BA4C7; 
-background-image: -moz-linear-gradient(top, #3BA4C7 0%, #1982A5 100%); 
-background-image: -webkit-linear-gradient(top, #3BA4C7 0%, #1982A5 100%); 
-background-image: -o-linear-gradient(top, #3BA4C7 0%, #1982A5 100%); 
-background-image: -ms-linear-gradient(top, #3BA4C7 0% ,#1982A5 100%); 
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1982A5', endColorstr='#1982A5',GradientType=0 ); 
-background-image: linear-gradient(top, #3BA4C7 0% ,#1982A5 100%);   
--webkit-box-shadow:0px 0px 2px #bababa, inset 0px 0px 1px #ffffff; 
--moz-box-shadow: 0px 0px 2px #bababa,  inset 0px 0px 1px #ffffff;  
-box-shadow:0px 0px 2px #bababa, inset 0px 0px 1px #ffffff;  
-
-}.button:hover{
-padding:11px 32px; 
-border:solid 1px #004F72; 
--webkit-border-radius:4px;
--moz-border-radius:4px; 
-border-radius: 4px; 
-font:19px Arial, Helvetica, sans-serif; 
-font-weight:bold; 
-color:#E5FFFF; 
-background-color:#3BA4C7; 
-background-image: -moz-linear-gradient(top, #3BA4C7 0%, #1982A5 100%); 
-background-image: -webkit-linear-gradient(top, #3BA4C7 0%, #1982A5 100%); 
-background-image: -o-linear-gradient(top, #3BA4C7 0%, #1982A5 100%); 
-background-image: -ms-linear-gradient(top, #3BA4C7 0% ,#1982A5 100%); 
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1982A5', endColorstr='#1982A5',GradientType=0 ); 
-background-image: linear-gradient(top, #3BA4C7 0% ,#1982A5 100%);   
--webkit-box-shadow:0px 0px 2px #bababa, inset 0px 0px 1px #ffffff; 
--moz-box-shadow: 0px 0px 2px #bababa,  inset 0px 0px 1px #ffffff;  
-box-shadow:0px 0px 2px #bababa, inset 0px 0px 1px #ffffff;  
-
-}.button:active{
-padding:11px 32px; 
-border:solid 1px #004F72; 
--webkit-border-radius:4px;
--moz-border-radius:4px; 
-border-radius: 4px; 
-font:21px Arial, Helvetica, sans-serif; 
-font-weight:bold; 
-color:#E5FFFF; 
-background-color:#3BA4C7; 
-background-image: -moz-linear-gradient(top, #3BA4C7 0%, #1982A5 100%); 
-background-image: -webkit-linear-gradient(top, #3BA4C7 0%, #1982A5 100%); 
-background-image: -o-linear-gradient(top, #3BA4C7 0%, #1982A5 100%); 
-background-image: -ms-linear-gradient(top, #3BA4C7 0% ,#1982A5 100%); 
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1982A5', endColorstr='#1982A5',GradientType=0 ); 
-background-image: linear-gradient(top, #3BA4C7 0% ,#1982A5 100%);   
--webkit-box-shadow:0px 0px 2px #bababa, inset 0px -2px 1px #465a61; 
--moz-box-shadow: 0px 0px 2px #bababa,  inset 0px -2px 1px #465a61;  
-box-shadow:0px 0px 2px #bababa, inset 0px -2px 1px #465a61;  
+           .contador1{
+    display: inline;
+    width: 100px;
+    height: 10px;
+    background-color:white;
+}
+.p_celules{
+    display: inline;
+    margin-left:10px
 }
     </style>
 </head>
@@ -104,9 +28,16 @@ box-shadow:0px 0px 2px #bababa, inset 0px -2px 1px #465a61;
             <output name="velocitat_sortida" id="velocitat_sortida"></output>
         </label>
     <a href="#" class="button" id="guardar" onclick="Guardar();">Guardar</a>
+    <p class="p_celules">Cel·lules vives</p>
+        <div class="contador1"id="contador_vives"></div>
+        <p class="p_celules">Cel·lules mortes</p>
+        <div class="contador1"id="contador_mortes"></div>
+        <p class="p_celules">Cicles</p>
+        <div class="contador1"id="cicles"></div>
     
 </ul>
     <table id="tauler"></table>
+    <a href="Formulari.html" title="Mi enlace"><img class="fletxa_enrrere"src="fletxa_enrere.png" alt="Enrere" width="auto" height="auto"></a>
 <?php 
 
 $x= $_COOKIE['x'];
@@ -124,8 +55,11 @@ var tauler=[]
 var tauler1=[];
 var contador=0;
 var start=null;
-var velocitat=0;
+var velocitat=100;
 var partidas=[];
+var celules_vives=0;
+var celules_mortes=0;
+var cicles=0;
 
 for(var i=0;i<valor_y;i++){
     tauler[i]=[];
@@ -139,7 +73,6 @@ for(var i=0;i<valor_y;i++){
 
 for(var i=0;i<array_partida.length;i++){
         var x_y = array_partida[i].split(',');
-        document.write(x_y[0]);
         x_y[0]=valor_y-1-x_y[0];
         x_y[1]=valor_x-1-x_y[1];
         tauler[x_y[0]][x_y[1]]=1;
@@ -156,9 +89,12 @@ var table = document.getElementById("tauler");
                     var cell1 = row.insertCell(0);
                     cell1.style.backgroundColor = "black";
                     cell1.innerHTML = "";
+                    celules_vives++;
                 }else{
                     var cell1 = row.insertCell(0);
-                     cell1.innerHTML = "";}
+                     cell1.innerHTML = "";
+                     celules_mortes++;
+                     }
         }}
 
     //capturem error si surt de l'array
@@ -189,7 +125,9 @@ var table = document.getElementById("tauler");
     //Imprimeixo la taula
     
     function imprimir_tauler() {
-        
+        this.celules_vives=0;
+        this.celules_mortes=0;
+        cicles++;
         var table = document.getElementById("tauler");
         table.innerHTML= "";
         for(var i=0;i<valor_y;i++){
@@ -200,10 +138,13 @@ var table = document.getElementById("tauler");
                     var cell1 = row.insertCell(0);
                     cell1.style.backgroundColor = "black";
                     cell1.innerHTML = "";
+                    celules_vives++;
                 }else{
                     var cell1 = row.insertCell(0);
                     cell1.style.backgroundColor = "white";
-                    cell1.innerHTML = " ";}
+                    cell1.innerHTML = " ";
+                    celules_mortes++;
+                    }
         }}};
 
 
@@ -254,6 +195,7 @@ for (let h = 0; h < valor_y; h++) {
                 }
             this.modificar_estat();
             this.imprimir_tauler();
+            this.contador1();
             };
     //Crido la funcio joc i la executo infinitament 
         function començar() {
@@ -274,6 +216,14 @@ for (let h = 0; h < valor_y; h++) {
     partidas.push();
     document.cookie = nom+"="+this.tauler1+";max-age=86400;path=/";
     }
+
+    function contador1(){
+        document.getElementById("contador_vives").innerHTML = this.celules_vives;
+        document.getElementById("contador_mortes").innerHTML = this.celules_mortes;
+        document.getElementById("cicles").innerHTML = this.cicles;
+        
+    }
+
 
 </script>
     

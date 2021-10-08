@@ -10,7 +10,6 @@ setcookie($cookie_name_y, $cookie_value_y);
 <html lang="en">
 <head>
 <link href="css.css"rel="stylesheet" type="text/css">
-   
 </head>
 <body>
     <h1 class="h1_celules">Selecciona les cel·lules vives</h1>
@@ -29,7 +28,9 @@ setcookie($cookie_name_y, $cookie_value_y);
     ?>
     
         <button class="button boto_enviar_checbox">enviar</button>
+
     </form>
     </div>
+    <a href="Formulari.html"><img class="fletxa_enrrere"src="fletxa_enrere.png" alt="Enrere" width="auto" height="auto"></a>
 </body>
 </html>

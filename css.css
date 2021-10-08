@@ -194,4 +194,13 @@ td {
     background-color: aliceblue;
     width: 10%;
 }
-
+.contador1{
+    display: inline;
+    width: 100px;
+    height: 10px;
+    background-color:white;
+}
+.p_celules{
+    display: inline;
+    margin-left:10px
+}
