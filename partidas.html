@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cargar</title>
+    <link href="css.css"rel="stylesheet" type="text/css">
+   
+</head>
+<body>
+    <div class="Menu">
+        <h1 class="h1_menu_principal">Partidas</h1>
+            <select id="partidas" onchange="enviar_dades(this.value);">
+                <option value="">Escull una partida:</option>
+            </select>
+            <a href="Formulari.html" title="Mi enlace"><img class="fletxa_enrrere"src="fletxa_enrere.png" alt="Enrere" width="auto" height="auto"></a>
+            <button><img href="partida.php"class="fletxa_endavant"src="fletxa_endavant.png" alt="Enrere" width="auto" height="auto" ></button>
+    </div>
+
+</body>
+<script>
+    function cookies() {
+
+var cookies = { };
+
+if (document.cookie && document.cookie != '') {
+    var split = document.cookie.split(';');
+    for (var i = 0; i < split.length; i++) {
+        var name_value = split[i].split("=");
+        name_value[0] = name_value[0].replace(/^ /, '');
+        cookies[decodeURIComponent(name_value[0])] = decodeURIComponent(name_value[1]);
+    }
+}
+
+return cookies;
+
+}
+
+  var cookies = cookies();
+for(var name in cookies) {
+  var y=document.createElement('option');
+  y.text=name;
+  var x=document.getElementById("partidas");
+  x.add(y);
+}
+
+function enviar_dades(valor){
+	
+  location.href='partida.php?valor=' + valor;
+}
+
+</script>
+</html>

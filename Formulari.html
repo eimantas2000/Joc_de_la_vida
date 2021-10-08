@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+       <link href="css.css"rel="stylesheet" type="text/css">
+    
+</head>
+<body>
+    <nav class="Menu_superior"><ul>
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Quiénes somos</a></li>
+        <li><a href="#">Servicios</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Contacto</a></li>
+    </ul></nav>
+        <form  class="Formulari" action="checkbox.php" method="GET">
+            <div class="Menu">
+                <h1 class="h1_celules">Insereix</h1>
+                <div class="div_formulari">
+                    <label><font face="Comic Sans MS,Arial,Verdana">Eix X </font><input type="range" name="cellules_horiz" id="cel_horiz_entrada" value="24" min="10" max="30" oninput="cel_horiz_sortida.value = cel_horiz_entrada.value">
+                        <output name="cel_horiz_sortida" id="cel_horiz_sortida"></output></label>
+                </div>
+                <div class="div_formulari"> 
+                    <label><font face="Comic Sans MS,Arial,Verdana">Eix Y </font><input type="range" name="cellules_vert" id="cel_vert_entrada" value="24" min="10" max="30" oninput="cel_vert_sortida.value = cel_vert_entrada.value">
+                        <output name="cel_vert_sortida" id="cel_vert_sortida"></output></label>
+                </div>
+                <a href="Menu_principal.html" title="Mi enlace"><img class="fletxa_enrrere"src="fletxa_enrere.png" alt="Enrere" width="auto" height="auto"></a>
+            <button><img class="fletxa_endavant"src="fletxa_endavant.png" alt="Enrere" width="auto" height="auto" ></button>
+            <a href="partidas.html" class="button boto_guardar" id="guardar" >Cargar partida</a>
+            </div>
+        </form> 
+
+        
+        </div>  
+
+</body>
+</html>
